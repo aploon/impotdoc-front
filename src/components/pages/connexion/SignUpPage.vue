@@ -6,7 +6,7 @@
                 <h2 class="text-primary text-decoration-underline">Créer un compte</h2>
                 <div class="d-flex align-items-center justify-content-center w-100">
                     <div class="row justify-content-center w-100">
-                        <div class="col-md-8 col-lg-6 col-xxl-3 auth-card">
+                        <div style="max-width: 600px !important;" class="col-md-8 auth-card">
                             <div class="card mb-0">
                                 <div class="card-body p-5">
                                     <a href="../main/index.html"

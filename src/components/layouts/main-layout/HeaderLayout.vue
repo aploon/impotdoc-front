@@ -12,53 +12,51 @@
     </div>
     <!-- ***** Preloader End ***** -->
 
-    <div class="sub-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-8">
-                    <ul class="info">
-                        <li><i class="fa fa-envelope"></i> info@company.com</li>
-                        <li><i class="fa fa-map"></i> Sunny Isles Beach, FL 33160</li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <ul class="social-links">
-                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                        <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    </ul>
-                </div>
+    <div class="sub-header" style="background-color: #138a92;">
+        <div class="d-flex h-100 justify-content-between align-items-stretch gap-2">
+            <div class="ps-5">
+                <img src="/assets/images/logo.png" alt="" style="height: 44px; width: auto;">
+            </div>
+            <div class="d-flex align-items-stretch justify-content-end flex-grow-1">  
+                <ul class="navbar align-items-stretch">
+                    <li class="d-flex align-items-center active">
+                        <RouterLink to="/sommaire">Sommaires</RouterLink>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <RouterLink to="/search">Faire une recherche</RouterLink>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center gap-3 pe-5">
+                <button class="btn btn-shadow text-white text-uppercase fw-bold" style="background-color: #ffffff33; font-size: 12px;">Se connecter</button>
+                <button class="btn btn-shadow text-white text-uppercase fw-bold" style="background-color: #f0a945; font-size: 12px;">Créer un compte</button>
             </div>
         </div>
     </div>
 
     <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
-                            <h1>Villa</h1>
-                        </a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li><a href="index.html" class="active">Home</a></li>
-                            <li><a href="properties.html">Properties</a></li>
-                            <li><a href="property-details.html">Property Details</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a></li>
-                        </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
-            </div>
+    <header class="header-area header-sticky bg-primary">
+        <div class="containertest">
+            <ul class="navbar-classif-impot-type d-none d-lg-flex align-items-center justify-content-center flex-wrap">
+                <li class="classif-impot-type-item active text-center py-4 px-5">
+                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">IMPÔTS DIRECTS</a>
+                </li>
+                <li class="classif-impot-type-item text-center py-4 px-5">
+                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">IMPÔTS INDIRECTS</a>
+                </li>
+                <li class="classif-impot-type-item text-center py-4 px-5">
+                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">ENREGISTREMENT - TIMBRE</a>
+                </li>
+                <li class="classif-impot-type-item text-center py-4 px-5">
+                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">DISPOSITIONS GÉNÉRALES</a>
+                </li>
+                <li class="classif-impot-type-item text-center py-4 px-5">
+                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">PROCÉDURES FISCALES</a>
+                </li>
+                <li class="classif-impot-type-item text-center py-4 px-5">
+                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">DISPOSITIONS FINALES</a>
+                </li>
+            </ul>
         </div>
     </header>
     <!-- ***** Header Area End ***** -->

@@ -19,11 +19,14 @@
             </div>
             <div class="d-flex align-items-stretch justify-content-end flex-grow-1">  
                 <ul class="navbar align-items-stretch">
-                    <li class="d-flex align-items-center">
-                        <RouterLink :to="{name: 'home'}">Sommaires</RouterLink>
+                    <li class="d-flex align-items-stretch">
+                        <RouterLink :to="{name: 'home'}" class="d-flex align-items-center">Sommaires</RouterLink>
                     </li>
-                    <li class="d-flex align-items-center">
-                        <RouterLink :to="{name: 'search'}">Faire une recherche</RouterLink>
+                    <li class="d-flex align-items-stretch">
+                        <RouterLink :to="{name: 'search'}" class="d-flex align-items-center">Faire une recherche</RouterLink>
+                    </li>
+                    <li class="d-flex align-items-stretch">
+                        <RouterLink :to="{name: 'faq'}" class="d-flex align-items-center">FAQ</RouterLink>
                     </li>
                 </ul>
             </div>

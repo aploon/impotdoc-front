@@ -1869,7 +1869,7 @@ input[type="color"]:focus,
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.navbar li.active {
+.navbar li a.router-link-exact-active {
   border-top: 3px solid #f0a945;
 }
 

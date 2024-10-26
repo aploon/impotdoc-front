@@ -4,6 +4,8 @@ import HomePage from "./components/pages/HomePage.vue";
 import SearchPage from "./components/pages/SearchPage.vue";
 import LoginPage from "./components/pages/connexion/LoginPage.vue";
 import SignUpPage from "./components/pages/connexion/SignUpPage.vue";
+import ClassifImpotTypePage from "./components/pages/impots/ClassifImpotTypePage.vue";
+import ImpotPage from "./components/pages/impots/ImpotPage.vue";
 
 // Create empty components
 const ForgetPasswordPage = { template: '<div>Forget Password Page</div>' }
@@ -31,11 +33,15 @@ export const routes = [
         { path: '/download-sommaire', name: "download-sommaire", component: DownloadSommairePage },
         { path: '/condition', name: "condition", component: ConditionPage },
         { path: '/politique', name: "politique", component: PolitiquePage },
+
+        // Impots routes
+        { path: '/:classifimpot', name: "classifimpot", component: ClassifImpotTypePage },
+        { path: '/:classifimpot/:classifimpottype', name: "classifimpottype", component: ClassifImpotTypePage },
+        { path: '/:classifimpot/:classifimpottype/:impot', name: "impot", component: ImpotPage },
     ] },
 
     // Auth routes
     { path: '/login', name: "login", component: LoginPage },
     { path: '/signup', name: "signup", component: SignUpPage },
-
     
 ]

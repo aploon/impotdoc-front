@@ -2,7 +2,9 @@
     <div class="sub-header" style="background-color: #138a92;">
         <div class="d-flex h-100 justify-content-between align-items-stretch gap-2">
             <div class="ps-5 d-flex align-items-center">
-                <img src="/assets/images/logo.png" alt="" style="height: 44px; width: auto;">
+                <RouterLink :to="{name: 'home'}">
+                    <img src="/assets/images/logo.png" alt="logo" style="height: 44px; width: auto;">
+                </RouterLink>
             </div>
             <div class="d-flex align-items-stretch justify-content-end flex-grow-1">  
                 <ul class="navbar align-items-stretch">

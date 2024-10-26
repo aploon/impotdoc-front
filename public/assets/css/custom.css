@@ -422,7 +422,7 @@ Header Style
 
 .header-area .main-nav ul.nav {
   flex-basis: 100%;
-  margin-top: 30px;
+  /* margin-top: 35px; */
   justify-content: right;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -531,7 +531,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #1e1e1e;
+  background-color: #ffffff;
   display: block;
   position: absolute;
   width: 30px;
@@ -545,7 +545,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #1e1e1e;
+  background-color: #ffffff;
   display: block;
   position: absolute;
   width: 30px;
@@ -592,11 +592,11 @@ Header Style
   -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
   -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
   transform: translateY(6px) translateX(1px) rotate(45deg);
-  background-color: #1e1e1e;
+  background-color: #ffffff;
 }
 
 .background-header .main-nav .menu-trigger.active span:before {
-  background-color: #1e1e1e;
+  background-color: #ffffff;
 }
 
 .header-area .main-nav .menu-trigger.active span:after {
@@ -604,11 +604,11 @@ Header Style
   -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  background-color: #1e1e1e;
+  background-color: #ffffff;
 }
 
 .background-header .main-nav .menu-trigger.active span:after {
-  background-color: #1e1e1e;
+  background-color: #ffffff;
 }
 
 .visible{
@@ -713,9 +713,9 @@ Header Style
   .header-area .main-nav .nav li:first-child {
     border-top: 1px solid #eee;
   }
-  .header-area.header-sticky .nav {
-    margin-top: 80px !important;
-  }
+  /* .header-area.header-sticky .nav {
+    margin-top: 35px !important;
+  } */
   .background-header.header-sticky .nav {
     margin-top: 80px !important;
   }
@@ -1341,7 +1341,7 @@ footer.footer-no-gap {
 }
 
 footer {
-  margin-top: 150px;
+  margin-top: 50px;
   background-color: #1e1e1e;
   min-height: 100px;
 }

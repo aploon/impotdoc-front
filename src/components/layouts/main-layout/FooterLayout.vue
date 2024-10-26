@@ -1,7 +1,7 @@
 <template>
     <footer>
         <div class="container">
-            <div class="quicklink d-flex justify-content-start pt-3 gap-3">
+            <div class="quicklink d-flex justify-content-start flex-wrap pt-3 gap-3">
                 <div class="logo">
                     <img src="/assets/images/logo.png" alt="" style="width: 250px;">
                 </div>
@@ -44,12 +44,37 @@
                         <li class="d-flex align-items-center w-100 classif-impot-item active">
                             <RouterLink :to="{name: 'download-sommaire'}" class="flex-grow-1 text-white">Télécharger le sommaires de documents</RouterLink>
                         </li>
+
+                        <li class="d-flex align-items-center w-100 classif-impot-item active">
+                            <RouterLink :to="{
+                                name: 'classifimpot', 
+                                params: {classifimpot: 'lorem'}
+                                }" class="flex-grow-1 text-white">
+                                ClassifImpot
+                            </RouterLink>
+                        </li>
+                        <li class="d-flex align-items-center w-100 classif-impot-item active">
+                            <RouterLink :to="{
+                                name: 'classifimpottype', 
+                                params: {classifimpot: 'lorem', classifimpottype: 'lorem'}
+                                }" class="flex-grow-1 text-white">
+                                ClassifImpotType
+                            </RouterLink>
+                        </li>
+                        <li class="d-flex align-items-center w-100 classif-impot-item active">
+                            <RouterLink :to="{
+                                name: 'impot', 
+                                params: {classifimpot: 'lorem', classifimpottype: 'lorem', impot: 'lorem'}
+                                }" class="flex-grow-1 text-white">
+                                Impot
+                            </RouterLink>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright d-flex justify-content-between align-items-center gap-3 flex-wrap">
-                <p class="text-start">Copyright © 2024, ImpotDoc, Developped by <a rel="nofollow" href="#" target="_blank"><u>aploon</u></a></p>
-                <p>
+            <div class="copyright d-flex justify-content-between align-items-center gap-3 flex-wrap pb-3">
+                <p class="text-start" style="line-height: normal;">Copyright © 2024, ImpotDoc, Developped by <a rel="nofollow" href="#" target="_blank"><u>aploon</u></a></p>
+                <p style="line-height: normal;">
                     <RouterLink :to="{name: 'condition'}" class="text-white"><u>Termes et conditions</u></RouterLink> &
                     <RouterLink :to="{name: 'politique'}" class="text-white"><u>Politique de confidentialité</u></RouterLink>  
                 </p>

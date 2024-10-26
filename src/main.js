@@ -8,6 +8,11 @@ const router = createRouter({
     routes
 })
 
+// Scripts when the route is changed
+router.afterEach(() => {
+    // some code here
+});
+
 const app = createApp(App)
 
 app.use(router)

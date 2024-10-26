@@ -14,16 +14,16 @@
 
     <div class="sub-header" style="background-color: #138a92;">
         <div class="d-flex h-100 justify-content-between align-items-stretch gap-2">
-            <div class="ps-5">
+            <div class="ps-5 d-flex align-items-center">
                 <img src="/assets/images/logo.png" alt="" style="height: 44px; width: auto;">
             </div>
             <div class="d-flex align-items-stretch justify-content-end flex-grow-1">  
                 <ul class="navbar align-items-stretch">
-                    <li class="d-flex align-items-center active">
-                        <RouterLink to="/sommaire">Sommaires</RouterLink>
+                    <li class="d-flex align-items-center">
+                        <RouterLink :to="{name: 'home'}">Sommaires</RouterLink>
                     </li>
                     <li class="d-flex align-items-center">
-                        <RouterLink to="/search">Faire une recherche</RouterLink>
+                        <RouterLink :to="{name: 'search'}">Faire une recherche</RouterLink>
                     </li>
                 </ul>
             </div>

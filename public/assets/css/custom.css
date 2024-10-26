@@ -1840,7 +1840,8 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-.uneditable-input:focus {   
+.uneditable-input:focus,
+.accordion-button:focus {   
   border-color: #0f6a71c8;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 1px #0f6a718e;
   outline: 0 none;

@@ -1874,7 +1874,7 @@ input[type="color"]:focus,
   border-top: 3px solid #f0a945;
 }
 
-.navbar-classif-impot-type li.active {
+.navbar-classif-impot-type li a.router-link-exact-active {
   border-bottom: 5px solid #fff;
 }
 
@@ -1899,7 +1899,7 @@ input[type="color"]:focus,
   color: #0a4d52;
 }
 
-.classif-impot-container ul li a.active {
+.classif-impot-container ul li a.router-link-exact-active {
   background-color: rgb(229 239 240);
   color: #0a4d52;
 }

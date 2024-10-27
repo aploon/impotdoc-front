@@ -30,23 +30,41 @@ onMounted(() => {
     <header class="header-area header-sticky bg-primary">
         <div class="container expand-container h-100">
             <ul class="navbar-classif-impot-type d-none d-lg-flex align-items-center justify-content-center flex-wrap">
-                <li class="classif-impot-type-item active text-center py-4 px-5">
-                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">IMPÔTS DIRECTS</a>
+                <li class="classif-impot-type-item text-center d-flex align-items-stretch">
+                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                        name: 'classifimpot',
+                        params: { classifimpot: 'impot-direct'}
+                    }" style="font-size: 16px;">IMPÔTS DIRECTS</RouterLink>
                 </li>
-                <li class="classif-impot-type-item text-center py-4 px-5">
-                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">IMPÔTS INDIRECTS</a>
+                <li class="classif-impot-type-item text-center d-flex align-items-stretch">
+                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                        name: 'classifimpot',
+                        params: { classifimpot: 'impot-indirect'}
+                    }" style="font-size: 16px;">IMPÔTS INDIRECTS</RouterLink>
                 </li>
-                <li class="classif-impot-type-item text-center py-4 px-5">
-                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">ENREGISTREMENT - TIMBRE</a>
+                <li class="classif-impot-type-item text-center d-flex align-items-stretch">
+                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                        name: 'classifimpot',
+                        params: { classifimpot: 'enreg-timbre'}
+                    }" style="font-size: 16px;">ENREGISTREMENT - TIMBRE</RouterLink>
                 </li>
-                <li class="classif-impot-type-item text-center py-4 px-5">
-                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">DISPOSITIONS GÉNÉRALES</a>
+                <li class="classif-impot-type-item text-center d-flex align-items-stretch">
+                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                        name: 'classifimpot',
+                        params: { classifimpot: 'dispo-gene'}
+                    }" style="font-size: 16px;">DISPOSITIONS GÉNÉRALES</RouterLink>
                 </li>
-                <li class="classif-impot-type-item text-center py-4 px-5">
-                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">PROCÉDURES FISCALES</a>
+                <li class="classif-impot-type-item text-center d-flex align-items-stretch">
+                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                        name: 'classifimpot',
+                        params: { classifimpot: 'procedure-fiscale'}
+                    }" style="font-size: 16px;">PROCÉDURES FISCALES</RouterLink>
                 </li>
-                <li class="classif-impot-type-item text-center py-4 px-5">
-                    <a class="fw-bold text-white text-uppercase" href="#" style="font-size: 16px;">DISPOSITIONS FINALES</a>
+                <li class="classif-impot-type-item text-center d-flex align-items-stretch">
+                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                        name: 'classifimpot',
+                        params: { classifimpot: 'dispo-finale'}
+                    }" style="font-size: 16px;">DISPOSITIONS FINALES</RouterLink>
                 </li>
             </ul>
 

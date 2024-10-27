@@ -6,22 +6,19 @@
     <div class="impot-container container mt-5">
         <div class="row">
             <div class="classif-impot-container col-lg">
-                <h5>Les Impots directs</h5>
+                <h5>{{ classifImpot.nom }}</h5>
                 <ul class="d-flex flex-column align-items-center mt-3">
-                    <li class="d-flex align-items-center w-100 classif-impot-item active">
-                        <a href="#" class="fw-bold flex-grow-1 active">Impôts sur le revenu</a>
-                    </li>
-                    <li class="d-flex align-items-center w-100 classif-impot-item active">
-                        <a href="#" class="fw-bold flex-grow-1">Taxes sur le patrimoine</a>
-                    </li>
-                    <li class="d-flex align-items-center w-100 classif-impot-item active">
-                        <a href="#" class="fw-bold flex-grow-1">Autres types d'impots</a>
+                    <li v-for="classifImpotType in classifImpotTypes" :key="classifImpotType.id" class="d-flex align-items-center w-100 classif-impot-item active">
+                        <RouterLink :to="{
+                            name: 'classifimpottype',
+                            params: { classifimpot: allParams.classifimpot, classifimpottype: classifImpotType.code.toLowerCase() }
+                        }" class="fw-bold flex-grow-1">{{ classifImpotType.nom }}</RouterLink>
                     </li>
                 </ul>
             </div>
-            <div class="impot-container col-lg-8">
+            <div class="impot-container col-lg-9">
                 <div class="impot-content">
-                    <span style="font-size: 21px;">Impôts sur le revenu</span>
+                    <span style="font-size: 21px;">{{ classifImpotType.nom }}</span>
                     <div class="table-responsive">
                         <table class="table mt-3">
                             <thead class="table-light">
@@ -60,18 +57,22 @@
 
 <script setup>
 import SearchComponent from '@/components/utils/Search.vue';
-import { onBeforeMount, ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { onBeforeMount, ref, watch } from 'vue';
+import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 
 // get routes param
-const { params } = useRoute();
+const route = useRoute();
 const router = useRouter();
 
 // ref data
+const classifImpot = ref([]);
+const classifImpotType = ref([]);
 const impots = ref([]);
 const allParams = ref([]);
+
+const classifImpotTypes = ref([]);
  
-const fetchImpots = async () => {
+const fetchImpots = async (params) => {
     try {  
         const res = await $.ajax({
             url: 'http://impotdoc.local/api/classif-impot-type/index.php',
@@ -81,6 +82,8 @@ const fetchImpots = async () => {
         });
 
         if (res.success) {
+            classifImpot.value = res.classifImpot;
+            classifImpotType.value = res.classifImpotType;
             impots.value = res.data;
             allParams.value = res.allParams;
         } else {
@@ -95,8 +98,38 @@ const fetchImpots = async () => {
     }
 };
 
+const fetchClassifImpotTypes = async (params) => {
+    try {
+        const res = await $.ajax({
+            url: 'http://impotdoc.local/api/classif-impot-type/index.php',
+            method: 'POST',
+            data: { action: 'fetch_classif_impot_types', classifimpot: params.classifimpot },
+            dataType: 'json',
+        });
+
+        if (res.success) {
+            classifImpotTypes.value = res.data;
+        } else {
+            if (res.code === 404) {
+                // Classif impot not found and redirect to 404 page
+                router.push({ name: 'not-found' });
+            }
+        }
+
+    } catch (error) {
+        console.error('Erreur lors de la requête:', error);
+    }
+};
+
 onBeforeMount(() => {
-    fetchImpots();
+    fetchImpots(route.params);
+    fetchClassifImpotTypes(route.params);
+});
+
+onBeforeRouteUpdate((to, from, next) => {
+    fetchImpots(to.params);
+    fetchClassifImpotTypes(to.params);
+    next();
 });
 
 </script>

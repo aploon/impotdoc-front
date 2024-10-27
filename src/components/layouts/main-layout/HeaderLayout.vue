@@ -56,7 +56,7 @@ onMounted(() => {
     <!-- ***** Header Area End ***** -->
 </template>
 
-<style>
+<style scoped>
     @media (min-width: 1750px) {
         .expand-container {
             max-width: 1820px;

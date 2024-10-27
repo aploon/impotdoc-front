@@ -15,6 +15,7 @@ const DirectionImpotPage = { template: '<div>Direction Impot Page</div>' }
 const DownloadSommairePage = { template: '<div>Download Sommaire Page</div>' }
 const ConditionPage = { template: '<div>Condition Page</div>' }
 const PolitiquePage = { template: '<div>Politique Page</div>' }
+const NotFoundPage = { template: '<div>Not Found Page</div>' }
 
 export const routes = [
     // Mains routes
@@ -35,13 +36,16 @@ export const routes = [
         { path: '/politique', name: "politique", component: PolitiquePage },
 
         // Impots routes
-        { path: '/:classifimpot', name: "classifimpot", component: ClassifImpotTypePage },
-        { path: '/:classifimpot/:classifimpottype', name: "classifimpottype", component: ClassifImpotTypePage },
-        { path: '/:classifimpot/:classifimpottype/:impot', name: "impot", component: ImpotPage },
+        { path: '/i/:classifimpot', name: "classifimpot", component: ClassifImpotTypePage },
+        { path: '/i/:classifimpot/:classifimpottype', name: "classifimpottype", component: ClassifImpotTypePage },
+        { path: '/i/:classifimpot/:classifimpottype/:impot', name: "impot", component: ImpotPage },
     ] },
 
     // Auth routes
     { path: '/login', name: "login", component: LoginPage },
     { path: '/signup', name: "signup", component: SignUpPage },
+
+    // Not found route  
+    { path: '/:pathMatch(.*)*', name: "not-found", component: NotFoundPage },
     
 ]

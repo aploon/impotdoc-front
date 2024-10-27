@@ -34,26 +34,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Impôts sur les sociétés</td>
-                                    <td>1</td>
-                                    <td>5</td>
-                                    <td>25% et 30%</td>
-                                    <td><a href=""><u>Voir la note</u></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Impôts sur les bénéfices d'affaires</td>
-                                    <td>2</td>
-                                    <td>33</td>
-                                    <td>12%</td>
-                                    <td><a href=""><u>Voir la note</u></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Impôt sur le revenu des capitaux mobiliers</td>
-                                    <td>3</td>
-                                    <td>38</td>
-                                    <td></td>
-                                    <td><a href=""><u>Voir la note</u></a></td>
+                                <tr v-for="impot in impots" :key="impot.id">
+                                    <td>{{ impot.designation }}</td>
+                                    <td>{{ impot.note }}</td>
+                                    <td>{{ impot.page_cgi }}</td>
+                                    <td>{{ impot.taux }}</td>
+                                    <td><RouterLink :to="{
+                                        name: 'impot',
+                                        params: { 
+                                            classifimpot: allParams.classifimpot, 
+                                            classifimpottype: allParams.classifimpottype, 
+                                            impot: impot.code 
+                                        }
+                                    }"><u>Voir la note</u></RouterLink></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -62,9 +55,48 @@
             </div>
         </div>
     </div>
-    
+
 </template>
 
 <script setup>
-    import SearchComponent from '@/components/utils/search.vue';
+import SearchComponent from '@/components/utils/Search.vue';
+import { onBeforeMount, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+// get routes param
+const { params } = useRoute();
+const router = useRouter();
+
+// ref data
+const impots = ref([]);
+const allParams = ref([]);
+ 
+const fetchImpots = async () => {
+    try {  
+        const res = await $.ajax({
+            url: 'http://impotdoc.local/api/classif-impot-type/index.php',
+            method: 'POST',
+            data: { action: 'fetch_impots', classifimpot: params.classifimpot, classifimpottype: params.classifimpottype },
+            dataType: 'json',
+        });
+
+        if (res.success) {
+            impots.value = res.data;
+            allParams.value = res.allParams;
+        } else {
+            if (res.code === 404) {
+                // Classif impot not found and redirect to 404 page
+                router.push({ name: 'not-found' });
+            }
+        }
+
+    } catch (error) {
+        console.error('Erreur lors de la requête:', error);
+    }
+};
+
+onBeforeMount(() => {
+    fetchImpots();
+});
+
 </script>

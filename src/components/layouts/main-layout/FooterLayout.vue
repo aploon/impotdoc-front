@@ -48,7 +48,7 @@
                         <li class="d-flex align-items-center w-100 classif-impot-item active">
                             <RouterLink :to="{
                                 name: 'classifimpot', 
-                                params: {classifimpot: 'lorem'}
+                                params: {classifimpot: 'impot-direct'}
                                 }" class="flex-grow-1 text-white">
                                 ClassifImpot
                             </RouterLink>
@@ -56,7 +56,7 @@
                         <li class="d-flex align-items-center w-100 classif-impot-item active">
                             <RouterLink :to="{
                                 name: 'classifimpottype', 
-                                params: {classifimpot: 'lorem', classifimpottype: 'lorem'}
+                                params: {classifimpot: 'impot-direct', classifimpottype: 'isr'}
                                 }" class="flex-grow-1 text-white">
                                 ClassifImpotType
                             </RouterLink>

@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-    import SearchComponent from '@/components/utils/search.vue';
+    import SearchComponent from '@/components/utils/Search.vue';
 </script>

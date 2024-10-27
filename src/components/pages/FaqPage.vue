@@ -66,10 +66,10 @@
 </template>
 
 <script setup>
-import SearchComponent from '@/components/utils/search.vue';
+import SearchComponent from '@/components/utils/Search.vue';
 </script>
 
-<style>
+<style scoped>
     @media (min-width: 576px) {
         .accordion-container{
             max-width: 440px;

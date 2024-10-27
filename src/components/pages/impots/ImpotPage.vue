@@ -122,10 +122,10 @@
 </template>
 
 <script setup>
-import SearchComponent from '@/components/utils/search.vue';
+import SearchComponent from '@/components/utils/Search.vue';
 </script>
 
-<style>
+<style scoped>
 th,
 td {
     background-color: rgba(0, 0, 0, 0) !important;

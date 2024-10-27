@@ -8,9 +8,16 @@ const router = createRouter({
     routes
 })
 
+let historys = [];
 // Scripts when the route is changed
 router.afterEach(() => {
     // some code here
+    historys.push({
+        name: router.currentRoute.value.name,
+        path: router.currentRoute.value.path,
+    });
+
+    app.config.globalProperties.$historys = historys;
 });
 
 const app = createApp(App)

@@ -1,6 +1,13 @@
 <script setup>
 import NavBar from '@/components/utils/NavBar.vue';
 import MobileNavBar from '@/components/utils/MobileNavBar.vue';
+import closeNavOnMobileLinkClicked from '@/scripts/others/close-nav';
+
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    closeNavOnMobileLinkClicked();
+});
 </script>
 
 <template>

@@ -1,14 +1,13 @@
 <script setup>
 import MobileNavBar from '@/components/utils/MobileNavBar.vue';
 import NavBar from '@/components/utils/NavBar.vue';
+import closeNavOnMobileLinkClicked from '@/scripts/others/close-nav';
 
-$(function() {
-    $('.menu-mobile-link').on('click', function() {
-        $('.menu-trigger').toggleClass('active');
-        $('.header-area .nav').slideToggle(200);
-    });
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    closeNavOnMobileLinkClicked();
 });
-
 </script>
 
 <template>

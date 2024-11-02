@@ -57,7 +57,7 @@
 
 <script setup>
 import SearchComponent from '@/components/utils/Search.vue';
-import { onBeforeMount, ref, watch } from 'vue';
+import { onBeforeMount, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 // get routes param

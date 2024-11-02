@@ -3,7 +3,17 @@ import MobileNavBar from '@/components/utils/MobileNavBar.vue';
 import NavBar from '@/components/utils/NavBar.vue';
 import closeNavOnMobileLinkClicked from '@/scripts/others/close-nav';
 
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const classifImpotActiveLink = (classifimpot) => {
+    if (route.params.classifimpot === classifimpot) {
+        return 'router-link-custom-active';
+    }
+    return '';
+};
 
 onMounted(() => {
     closeNavOnMobileLinkClicked();
@@ -31,37 +41,37 @@ onMounted(() => {
         <div class="container expand-container h-100">
             <ul class="navbar-classif-impot-type d-none d-lg-flex align-items-center justify-content-center flex-wrap">
                 <li class="classif-impot-type-item text-center d-flex align-items-stretch">
-                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                    <RouterLink :class="'fw-bold text-white text-uppercase py-4 px-5 ' + classifImpotActiveLink('impot-direct')" :to="{
                         name: 'classifimpot',
                         params: { classifimpot: 'impot-direct'}
                     }" style="font-size: 16px;">IMPÔTS DIRECTS</RouterLink>
                 </li>
                 <li class="classif-impot-type-item text-center d-flex align-items-stretch">
-                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                    <RouterLink :class="'fw-bold text-white text-uppercase py-4 px-5 ' + classifImpotActiveLink('impot-indirect')" :to="{
                         name: 'classifimpot',
                         params: { classifimpot: 'impot-indirect'}
                     }" style="font-size: 16px;">IMPÔTS INDIRECTS</RouterLink>
                 </li>
                 <li class="classif-impot-type-item text-center d-flex align-items-stretch">
-                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                    <RouterLink :class="'fw-bold text-white text-uppercase py-4 px-5 ' + classifImpotActiveLink('enreg-timbre')" :to="{
                         name: 'classifimpot',
                         params: { classifimpot: 'enreg-timbre'}
                     }" style="font-size: 16px;">ENREGISTREMENT - TIMBRE</RouterLink>
                 </li>
                 <li class="classif-impot-type-item text-center d-flex align-items-stretch">
-                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                    <RouterLink :class="'fw-bold text-white text-uppercase py-4 px-5 ' + classifImpotActiveLink('dispo-gene')" :to="{
                         name: 'classifimpot',
                         params: { classifimpot: 'dispo-gene'}
                     }" style="font-size: 16px;">DISPOSITIONS GÉNÉRALES</RouterLink>
                 </li>
                 <li class="classif-impot-type-item text-center d-flex align-items-stretch">
-                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                    <RouterLink :class="'fw-bold text-white text-uppercase py-4 px-5 ' + classifImpotActiveLink('procedure-fiscale')" :to="{
                         name: 'classifimpot',
                         params: { classifimpot: 'procedure-fiscale'}
                     }" style="font-size: 16px;">PROCÉDURES FISCALES</RouterLink>
                 </li>
                 <li class="classif-impot-type-item text-center d-flex align-items-stretch">
-                    <RouterLink class="fw-bold text-white text-uppercase py-4 px-5" :to="{
+                    <RouterLink :class="'fw-bold text-white text-uppercase py-4 px-5 ' + classifImpotActiveLink('dispo-finale')" :to="{
                         name: 'classifimpot',
                         params: { classifimpot: 'dispo-finale'}
                     }" style="font-size: 16px;">DISPOSITIONS FINALES</RouterLink>

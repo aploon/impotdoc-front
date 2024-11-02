@@ -1878,6 +1878,10 @@ input[type="color"]:focus,
   border-bottom: 5px solid #fff;
 }
 
+.navbar-classif-impot-type li a.router-link-custom-active {
+  border-bottom: 5px solid #fff;
+}
+
 .search-container {
   height: 250px; 
   background-image: url('/assets/images/impot/impot-search-bgimg.jpg'); 

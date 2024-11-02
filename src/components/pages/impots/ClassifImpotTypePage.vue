@@ -58,7 +58,7 @@
 <script setup>
 import SearchComponent from '@/components/utils/Search.vue';
 import { onBeforeMount, ref, watch } from 'vue';
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 // get routes param
 const route = useRoute();
@@ -69,9 +69,9 @@ const classifImpot = ref([]);
 const classifImpotType = ref([]);
 const impots = ref([]);
 const allParams = ref([]);
-
 const classifImpotTypes = ref([]);
- 
+
+// fetch methods
 const fetchImpots = async (params) => {
     try {  
         const res = await $.ajax({
@@ -97,7 +97,6 @@ const fetchImpots = async (params) => {
         console.error('Erreur lors de la requête:', error);
     }
 };
-
 const fetchClassifImpotTypes = async (params) => {
     try {
         const res = await $.ajax({
@@ -121,15 +120,15 @@ const fetchClassifImpotTypes = async (params) => {
     }
 };
 
+// hooks
 onBeforeMount(() => {
     fetchImpots(route.params);
     fetchClassifImpotTypes(route.params);
 });
 
-onBeforeRouteUpdate((to, from, next) => {
-    fetchImpots(to.params);
-    fetchClassifImpotTypes(to.params);
-    next();
+watch(route, (r) => {
+    fetchImpots(r.params);
+    fetchClassifImpotTypes(r.params);
 });
 
 </script>

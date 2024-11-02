@@ -25,15 +25,15 @@ export const routes = [
         { path: 'faq', name: "faq", component: FaqPage },
 
         // Auth routes
-        { path: '/forget-password', name: "forget-password", component: ForgetPasswordPage },
+        { path: 'forget-password', name: "forget-password", component: ForgetPasswordPage },
 
         //  Others routes
-        { path: '/loi-finance', name: "loi-finance", component: LoiFinancePage },
-        { path: '/code-general', name: "code-general", component: CodeGeneralPage },
-        { path: '/direction-impot', name: "direction-impot", component: DirectionImpotPage },
-        { path: '/download-sommaire', name: "download-sommaire", component: DownloadSommairePage },
-        { path: '/condition', name: "condition", component: ConditionPage },
-        { path: '/politique', name: "politique", component: PolitiquePage },
+        { path: 'loi-finance', name: "loi-finance", component: LoiFinancePage },
+        { path: 'code-general', name: "code-general", component: CodeGeneralPage },
+        { path: 'direction-impot', name: "direction-impot", component: DirectionImpotPage },
+        { path: 'download-sommaire', name: "download-sommaire", component: DownloadSommairePage },
+        { path: 'condition', name: "condition", component: ConditionPage },
+        { path: 'politique', name: "politique", component: PolitiquePage },
 
         // Impots routes
         { path: '/i/:classifimpot', name: "classifimpot", component: ClassifImpotTypePage },

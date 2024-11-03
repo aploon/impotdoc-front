@@ -36,9 +36,9 @@ export const routes = [
         { path: 'politique', name: "politique", component: PolitiquePage },
 
         // Impots routes
-        { path: '/i/:classifimpot', name: "classifimpot", component: ClassifImpotTypePage },
-        { path: '/i/:classifimpot/:classifimpottype', name: "classifimpottype", component: ClassifImpotTypePage },
-        { path: '/i/:classifimpot/:classifimpottype/:impot', name: "impot", component: ImpotPage },
+        { path: '/s/:classifimpot', name: "classifimpot", component: ClassifImpotTypePage },
+        { path: '/s/:classifimpot/:classifimpottype', name: "classifimpottype", component: ClassifImpotTypePage },
+        { path: '/s/:classifimpot/:classifimpottype/:impot', name: "impot", component: ImpotPage },
     ] },
 
     // Auth routes

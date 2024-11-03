@@ -46,7 +46,7 @@ const autoComplete = () => {
                     return getAlgoliaResults({
                         searchClient,
                         queries: [{
-                            indexName: 'admin_impotdoc_index_php',
+                            indexName: 'front_impotdoc_index_php',
                             params: {
                                 query,
                                 hitsPerPage: 5,

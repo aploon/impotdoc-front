@@ -136,10 +136,37 @@ onMounted(() => {
     });
 })
 onBeforeMount(() => {
-    fetchImpot(route.params);
+    // check if route patch as hash
+    if (route.hash) {
+        const hash = route.hash.replace('#', '');
+        const articleId = parseInt(hash.replace('article', ''));
+        fetchImpot(route.params);
+        fetchArticle(articleId);
+
+        setTimeout(()=>{
+            // active article title
+            $('.article-title').removeClass('article-title-active');
+            $('a[data-id="' + articleId + '"]').toggleClass('article-title-active');
+        }, 100);
+    }else {
+        fetchImpot(route.params);
+    }
 });
 watch(route, (r) => {
-    fetchImpot(r.params);
+    // check if route patch as hash
+    if (route.hash) {
+        const hash = route.hash.replace('#', '');
+        const articleId = parseInt(hash.replace('article', ''));
+        fetchArticle(articleId);
+
+        setTimeout(()=>{
+            // active article title
+            $('.article-title').removeClass('article-title-active');
+            $('a[data-id="' + articleId + '"]').toggleClass('article-title-active');
+        }, 100);
+    }else {
+        fetchImpot(r.params);
+    }
 });
 
 </script>

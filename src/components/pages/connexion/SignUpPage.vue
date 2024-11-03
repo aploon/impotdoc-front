@@ -2,7 +2,8 @@
 
     <Layout>
         <div id="main-wrapper" class="auth-customizer-none mt-5">
-            <div class="position-relative overflow-hidden radial-gradient w-100 d-flex flex-column gap-4 align-items-center justify-content-center">
+            <div
+                class="position-relative overflow-hidden radial-gradient w-100 d-flex flex-column gap-4 align-items-center justify-content-center">
                 <h2 class="text-primary text-decoration-underline">Créer un compte</h2>
                 <div class="d-flex align-items-center justify-content-center w-100">
                     <div class="row justify-content-center w-100">
@@ -11,8 +12,11 @@
                                 <div class="card-body p-5">
                                     <a href="../main/index.html"
                                         class="text-nowrap logo-img text-center d-block mb-5 w-100 bg-primary py-2">
-                                        <img src="/assets/images/logo.png" class="dark-logo" style="height: 50px; width: auto !important;" alt="Logo-Dark">
-                                        <img src="/assets/images/logo.png" class="light-logo" style="height: 50px; width: auto !important; display: none;" alt="Logo-light">
+                                        <img src="/assets/images/logo.png" class="dark-logo"
+                                            style="height: 50px; width: auto !important;" alt="Logo-Dark">
+                                        <img src="/assets/images/logo.png" class="light-logo"
+                                            style="height: 50px; width: auto !important; display: none;"
+                                            alt="Logo-light">
                                     </a>
                                     <!-- <div class="row">
                                         <div class="col-6 mb-2 mb-sm-0">
@@ -43,23 +47,24 @@
                                     <form>
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Nom d'utilisateur</label>
-                                            <input type="text" class="form-control" id="username"
+                                            <input type="text" v-model="formData.username" class="form-control" id="username"
                                                 aria-describedby="emailHelp">
                                         </div>
                                         <div class="mb-4">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email"
+                                            <input type="email" v-model="formData.email" class="form-control" id="email"
                                                 aria-describedby="emailHelp">
                                         </div>
                                         <div class="mb-4">
                                             <label for="password" class="form-label">Mot de passe</label>
-                                            <input type="password" class="form-control" id="password">
+                                            <input type="password" v-model="formData.password" class="form-control" id="password">
                                         </div>
-                                        <button class="btn btn-primary w-100 py-8 mb-4 rounded-2">Créer un compte</button>
+                                        <button id="signup_btn" @click.prevent="signup" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Créer un
+                                            compte</button>
                                         <div class="d-flex align-items-center justify-content-center flex-wrap">
                                             <span class="mb-0 fw-medium">Vous avez déjà un compte ?</span>
-                                            <RouterLink class="text-primary fw-medium ms-2"
-                                                :to="{name: 'login'}">Connecter-vous !</RouterLink>
+                                            <RouterLink class="text-primary fw-medium ms-2" :to="{ name: 'login' }">
+                                                Connecter-vous !</RouterLink>
                                         </div>
                                     </form>
                                 </div>
@@ -70,9 +75,39 @@
             </div>
         </div>
     </Layout>
-    
+
 </template>
 
 <script setup>
-    import Layout from '@/components/layouts/connexion/Layout.vue';
+import Layout from '@/components/layouts/connexion/Layout.vue';
+import { ref } from 'vue';
+
+// ref data
+const formData = ref({username: '', email: '', password: ''});
+
+// fetch methods
+const signup = async () => {
+    const data = formData.value
+    $('#signup_btn').text('Inscription...')
+    try {  
+        const res = await $.ajax({
+            url: 'http://impotdoc.local/api/login/signup.php',
+            method: 'POST',
+            data: { username: data.username, email: data.email, password: data.password },
+            dataType: 'json',
+        });
+
+        if (res.success) {
+            // stock in session and redirect
+            console.log(res)
+        }else {
+            console.log(res)
+        }
+
+    } catch (error) {
+        console.error("Un erreur s'est produite : ", error);
+    }
+    $('#signup_btn').text('Créer un compte')
+
+}
 </script>

@@ -46,14 +46,14 @@
                                     </div> -->
                                     <form>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Nom d'utilisateur ou
+                                            <label for="email" class="form-label">Nom d'utilisateur ou
                                                 Email</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                            <input type="email" v-model="formData.email" class="form-control" id="email"
                                                 aria-describedby="emailHelp">
                                         </div>
                                         <div class="mb-4">
-                                            <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1">
+                                            <label for="password" class="form-label">Mot de passe</label>
+                                            <input type="password" v-model="formData.password" class="form-control" id="password">
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between flex-wrap mb-4">
                                             <div class="form-check">
@@ -67,7 +67,7 @@
                                                 :to="{name: 'forget-password'}">Mot de passe oublié
                                                 ?</RouterLink>
                                         </div>
-                                        <button class="btn btn-primary w-100 py-8 mb-4 rounded-2">Se connecter</button>
+                                        <button id="login_btn" @click.prevent="login" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Se connecter</button>
                                         <div class="d-flex align-items-center justify-content-center flex-wrap">
                                             <span class="mb-0 fw-medium">Vous n'avez pas de compte ?</span>
                                             <RouterLink class="text-primary fw-medium ms-2"
@@ -87,4 +87,37 @@
 
 <script setup>
 import Layout from '@/components/layouts/connexion/Layout.vue';
+import { ref } from 'vue';
+
+// ref data
+const formData = ref({email: '', password: ''});
+
+// fetch methods
+const login = async () => {
+    const data = formData.value
+    $('#login_btn').text('Connexion...')
+    try {  
+        const res = await $.ajax({
+            url: 'http://impotdoc.local/api/login/signin.php',
+            method: 'POST',
+            data: { email: data.email, password: data.password },
+            dataType: 'json',
+        });
+
+        if (res.success) {
+            // stock in session and redirect
+        }else {
+            if (res.message == "Compte inactif") {
+                console.log("Votre compte a été désactiver, veuillez contacter un administrateur !")
+            }else {
+                console.log("Email ou mot de passe incorrect")
+            }
+        }
+
+    } catch (error) {
+        console.error("Un erreur s'est produite : ", error);
+    }
+    $('#login_btn').text('Se connecter')
+
+}
 </script>

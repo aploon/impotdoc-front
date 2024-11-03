@@ -3,7 +3,7 @@ import MobileNavBar from '@/components/utils/MobileNavBar.vue';
 import NavBar from '@/components/utils/NavBar.vue';
 import closeNavOnMobileLinkClicked from '@/scripts/others/close-nav';
 
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();

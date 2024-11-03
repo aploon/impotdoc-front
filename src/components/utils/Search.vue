@@ -3,9 +3,9 @@
     <div class="search-container w-100 d-flex justify-content-center align-items-center">
         <div class="search-content w-100">
             <form action="" class="search-form col-10 col-lg-6 m-auto" style="max-width: 750px !important;">
-                <div class="input-group">
+                <div id="search_open_btn" class="input-group" style="cursor: pointer;">
                     <input type="text" class="form-control px-3" 
-                        style="font-size: 16px !important; padding-top: 11px; padding-bottom: 11px;" 
+                        style="pointer-events: none; font-size: 16px !important; padding-top: 11px; padding-bottom: 11px;" 
                         placeholder="Faire une recherche">
                     <div class="input-group-prepend">
                         <button class="input-group-text h-100 px-3" id="btnGroupAddon"

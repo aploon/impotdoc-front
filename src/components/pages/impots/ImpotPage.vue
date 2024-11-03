@@ -8,10 +8,13 @@
             <div class="classif-impot-container col-lg">
                 <ul class="d-flex flex-column align-items-center mt-3">
                     <li class="d-flex align-items-center w-100 classif-impot-item">
-                        <a href="#" @click.prevent="fetchImpot(route.params)" class="article-title article-title-active fw-bold flex-grow-1">Tous les articles</a>
+                        <a href="#" @click.prevent="fetchImpot(route.params)"
+                            class="article-title article-title-active fw-bold flex-grow-1">Tous les articles</a>
                     </li>
-                    <li v-for="article in articlesNames" :key="article.id" class="d-flex align-items-center w-100 classif-impot-item">
-                        <a href="#" @click.prevent="fetchArticle(article.id)" class="article-title fw-bold flex-grow-1" :data-id="article.id">Article {{ article.num }}: {{ article.titre }}</a>
+                    <li v-for="article in articlesNames" :key="article.id"
+                        class="d-flex align-items-center w-100 classif-impot-item">
+                        <a href="#" @click.prevent="fetchArticle(article.id)" class="article-title fw-bold flex-grow-1"
+                            :data-id="article.id">Article {{ article.num }}: {{ article.titre }}</a>
                     </li>
                 </ul>
             </div>
@@ -25,8 +28,7 @@
                                     <th class="max-w-[125px] text-center" style="border: solid 1px black !important">
                                         ARTICLE
                                     </th>
-                                    <th class="min-w-[350px]"
-                                        style="border: solid 1px black !important;">
+                                    <th class="min-w-[350px]" style="border: solid 1px black !important;">
                                         RESUME/COMMENTAIRES
                                     </th>
                                 </tr>
@@ -44,7 +46,7 @@
                                         <td v-html="article.contenu"></td>
                                     </tr>
                                 </template>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -71,7 +73,7 @@ const articlesNames = ref([]);
 
 // fetch methods
 const fetchImpot = async (params) => {
-    try {  
+    try {
         const res = await $.ajax({
             url: 'http://impotdoc.local/api/impot/index.php',
             method: 'POST',
@@ -117,20 +119,29 @@ const fetchArticle = async (id) => {
 };
 const activeArticle = () => {
     // Active article title
-    $('.article-title').on('click', function() {
+    $('.article-title').on('click', function () {
         $('.article-title').removeClass('article-title-active');
         $(this).toggleClass('article-title-active');
     });
 };
 
 // hooks
+onMounted(() => {
+    // handle search when click on input open modal
+    document.getElementById('search_open_btn').addEventListener('click', function () {
+        $('#search_modal').modal('show');
+        setTimeout(() => {
+            document.getElementById('autocomplete-0-input').focus();
+        }, 200);
+    });
+})
 onBeforeMount(() => {
     fetchImpot(route.params);
 });
-
 watch(route, (r) => {
     fetchImpot(r.params);
 });
+
 </script>
 
 <style scoped>

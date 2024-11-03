@@ -8,7 +8,8 @@
             <div class="classif-impot-container col-lg">
                 <h5>{{ classifImpot.nom }}</h5>
                 <ul class="d-flex flex-column align-items-center mt-3">
-                    <li v-for="classifImpotType in classifImpotTypes" :key="classifImpotType.id" class="d-flex align-items-center w-100 classif-impot-item active">
+                    <li v-for="classifImpotType in classifImpotTypes" :key="classifImpotType.id"
+                        class="d-flex align-items-center w-100 classif-impot-item active">
                         <RouterLink :to="{
                             name: 'classifimpottype',
                             params: { classifimpot: allParams.classifimpot, classifimpottype: classifImpotType.code.toLowerCase() }
@@ -36,14 +37,16 @@
                                     <td>{{ impot.note }}</td>
                                     <td>{{ impot.page_cgi }}</td>
                                     <td>{{ impot.taux }}</td>
-                                    <td><RouterLink :to="{
-                                        name: 'impot',
-                                        params: { 
-                                            classifimpot: allParams.classifimpot, 
-                                            classifimpottype: allParams.classifimpottype, 
-                                            impot: impot.code 
-                                        }
-                                    }"><u>Voir la note</u></RouterLink></td>
+                                    <td>
+                                        <RouterLink :to="{
+                                            name: 'impot',
+                                            params: {
+                                                classifimpot: allParams.classifimpot,
+                                                classifimpottype: allParams.classifimpottype,
+                                                impot: impot.code
+                                            }
+                                        }"><u>Voir la note</u></RouterLink>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -73,7 +76,7 @@ const classifImpotTypes = ref([]);
 
 // fetch methods
 const fetchImpots = async (params) => {
-    try {  
+    try {
         const res = await $.ajax({
             url: 'http://impotdoc.local/api/classif-impot-type/index.php',
             method: 'POST',
@@ -121,11 +124,19 @@ const fetchClassifImpotTypes = async (params) => {
 };
 
 // hooks
+onMounted(() => {
+    // handle search when click on input open modal
+    document.getElementById('search_open_btn').addEventListener('click', function () {
+        $('#search_modal').modal('show');
+        setTimeout(() => {
+            document.getElementById('autocomplete-0-input').focus();
+        }, 200);
+    });
+})
 onBeforeMount(() => {
     fetchImpots(route.params);
     fetchClassifImpotTypes(route.params);
 });
-
 watch(route, (r) => {
     fetchImpots(r.params);
     fetchClassifImpotTypes(r.params);

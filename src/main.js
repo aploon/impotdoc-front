@@ -11,7 +11,7 @@ const router = createRouter({
 let historys = [];
 // Scripts when the route is changed
 router.afterEach(() => {
-    // some code here
+    // Add route to history
     historys.push({
         name: router.currentRoute.value.name,
         path: router.currentRoute.value.path,

@@ -91,7 +91,7 @@ const signup = async () => {
     $('#signup_btn').text('Inscription...')
     try {  
         const res = await $.ajax({
-            url: 'http://impotdoc.local/api/login/signup.php',
+            url: 'http://kubernetes.docker.internal/api/login/signup.php',
             method: 'POST',
             data: { username: data.username, email: data.email, password: data.password },
             dataType: 'json',

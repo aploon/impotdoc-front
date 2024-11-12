@@ -75,7 +75,7 @@ const articlesNames = ref([]);
 const fetchImpot = async (params) => {
     try {
         const res = await $.ajax({
-            url: 'http://impotdoc.local/api/impot/index.php',
+            url: 'http://kubernetes.docker.internal/api/impot/index.php',
             method: 'POST',
             data: { action: 'fetch_impot', impot: params.impot },
             dataType: 'json',
@@ -103,7 +103,7 @@ const fetchImpot = async (params) => {
 const fetchArticle = async (id) => {
     try {
         const res = await $.ajax({
-            url: 'http://impotdoc.local/api/impot/index.php',
+            url: 'http://kubernetes.docker.internal/api/impot/index.php',
             method: 'POST',
             data: { action: 'fetch_article', id: id },
             dataType: 'json',

@@ -78,7 +78,7 @@ const classifImpotTypes = ref([]);
 const fetchImpots = async (params) => {
     try {
         const res = await $.ajax({
-            url: 'http://impotdoc.local/api/classif-impot-type/index.php',
+            url: 'http://kubernetes.docker.internal/api/classif-impot-type/index.php',
             method: 'POST',
             data: { action: 'fetch_impots', classifimpot: params.classifimpot, classifimpottype: params.classifimpottype },
             dataType: 'json',
@@ -103,7 +103,7 @@ const fetchImpots = async (params) => {
 const fetchClassifImpotTypes = async (params) => {
     try {
         const res = await $.ajax({
-            url: 'http://impotdoc.local/api/classif-impot-type/index.php',
+            url: 'http://kubernetes.docker.internal/api/classif-impot-type/index.php',
             method: 'POST',
             data: { action: 'fetch_classif_impot_types', classifimpot: params.classifimpot },
             dataType: 'json',

@@ -5,14 +5,17 @@
         <div class="search-content w-100">
             <form action="" class="search-form col-10 col-lg-6 m-auto" style="max-width: 750px !important;">
                 <div class="input-group" style="cursor: pointer;">
-                    <input id="searchbox" type="text" class="form-control px-3" 
+                    <!-- <input id="searchbox" type="text" class="form-control px-3" 
                         style="font-size: 16px !important; padding-top: 11px; padding-bottom: 11px;" 
-                        placeholder="Faire une recherche">
+                        placeholder="Faire une recherche"> -->
+                    <div id="searchbox"></div>
                     <div class="input-group-prepend">
                         <button type="button" class="input-group-text h-100 px-3" id="btnGroupAddon"
                             style="background-color: rgb(240, 169, 69); border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                             </svg>
                         </button>
                     </div>
@@ -39,11 +42,11 @@ const { algoliasearch, instantsearch } = window;
 
 const searchClient = algoliasearch(
     'V1PX7KYJ9H',
-    'd7d5d18e8ad4f50cfc05c904e42283c8'
+    '37794dba24017d8b506a02633a075d62'
 );
 
 const search = instantsearch({
-    indexName: 'admin_impotdoc_index_php',
+    indexName: 'front_impotdoc_index_php',
     searchClient,
     future: { preserveSharedStateOnUnmount: true },
 });
@@ -62,7 +65,9 @@ onMounted(() => {
                 item: (hit, { html, components }) => html`
                 <article>
                     <div>
-                    <h1>${components.Highlight({ hit, attribute: 'title' })}</h1>
+                        <h3>${components.Highlight({ hit, attribute: 'title' })}</h3>
+                        <p>${components.Highlight({ hit, attribute: 'content' })}</p>
+                        <p>${components.Snippet({ hit, attribute: 'content' })}</p>
                     </div>
                 </article>
                 `,
@@ -76,6 +81,11 @@ onMounted(() => {
         }),
     ]);
     search.start();
+
+    // Change input in search box
+    $('#searchbox input')
+        .removeClass('ais-SearchBox-input')
+        .addClass('form-control px-3').attr('placeholder', 'Faire une recherche');
 
     // handle search when click on input open modal
     // document.getElementById('search_open_btn').addEventListener('click', function () {
@@ -123,6 +133,13 @@ onMounted(() => {
     padding: 1rem;
 }
 
+#searchbox {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+
 .search-panel {
     display: flex;
 }
@@ -152,5 +169,21 @@ onMounted(() => {
 .ais-Hits-item img {
     max-height: 125px;
     padding-right: 16px;
+}
+</style>
+<style>
+.ais-SearchBox-form::before {
+    content: none !important;
+}
+#searchbox input {
+    font-size: 16px !important;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    border-radius: 0px !important;
+    border-radius: .375rem 0px 0px .375rem !important;
+}
+#searchbox form {
+    height: auto !important;
+    border-radius: .375rem 0px 0px .375rem !important;
 }
 </style>

@@ -26,7 +26,7 @@
 
     <div class="container">
         <div class="search-panel">
-            <div class="search-panel__results">
+            <div class="search-panel__results w-100">
                 <div id="hits"></div>
                 <div id="pagination"></div>
             </div>
@@ -36,7 +36,8 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { nextTick, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 const { algoliasearch, instantsearch } = window;
 
@@ -51,6 +52,8 @@ const search = instantsearch({
     future: { preserveSharedStateOnUnmount: true },
 });
 
+const router = useRouter();
+
 // hooks
 onMounted(() => {
 
@@ -63,12 +66,19 @@ onMounted(() => {
             container: '#hits',
             templates: {
                 item: (hit, { html, components }) => html`
-                <article>
-                    <div>
-                        <h3>${components.Highlight({ hit, attribute: 'title' })}</h3>
-                        <p>${components.Highlight({ hit, attribute: 'content' })}</p>
-                        <p>${components.Snippet({ hit, attribute: 'content' })}</p>
-                    </div>
+                <article class="d-flex justify-content-between w-100">
+                    <a href="${hit.url}" class="instantsearch-url flex-grow-1">
+                        <div>
+                            <h3>${components.Highlight({ hit, attribute: 'title' })}</h3>
+                            <p class="search-content">${components.Highlight({ hit, attribute: 'content' })}</p>
+                        </div>
+                    </a>
+                    <a href="${hit.secondary_url}" class="instantsearch-url">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                            <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                        </svg>
+                    </a>
                 </article>
                 `,
             },
@@ -82,18 +92,22 @@ onMounted(() => {
     ]);
     search.start();
 
+    // when search is ready
+    search.on('render', async () => {
+        await nextTick();
+        // when click on instantsearch-url
+        $('.instantsearch-url').on('click', function(e) {
+            e.preventDefault();
+            const targetRoute = $(this).attr('href');
+            router.push(targetRoute);
+        });
+    });
+
     // Change input in search box
     $('#searchbox input')
         .removeClass('ais-SearchBox-input')
         .addClass('form-control px-3').attr('placeholder', 'Faire une recherche');
 
-    // handle search when click on input open modal
-    // document.getElementById('search_open_btn').addEventListener('click', function () {
-    //     $('#search_modal').modal('show');
-    //     setTimeout(() => {
-    //         document.getElementById('autocomplete-0-input').focus();
-    //     }, 200);
-    // });
 })
 </script>
 
@@ -128,7 +142,7 @@ onMounted(() => {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 1rem;
 }
@@ -172,7 +186,7 @@ onMounted(() => {
 }
 </style>
 <style>
-.ais-SearchBox-form::before {
+#searchbox .ais-SearchBox-form::before {
     content: none !important;
 }
 #searchbox input {
@@ -185,5 +199,18 @@ onMounted(() => {
 #searchbox form {
     height: auto !important;
     border-radius: .375rem 0px 0px .375rem !important;
+}
+#pagination .ais-Pagination-list{
+    flex-wrap: wrap;
+}
+#hits .search-content {
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    box-orient: vertical;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 </style>

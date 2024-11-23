@@ -102,9 +102,9 @@ onMounted(() => {
     search.start();
 
     // when search is ready
-    search.on('render', async () => {
-        await nextTick();
+    search.on('render', async () => {        
         // when click on instantsearch-url
+        await nextTick();
         $('.instantsearch-url').on('click', function(e) {
             e.preventDefault();
             const targetRoute = $(this).attr('href');

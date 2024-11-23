@@ -5,7 +5,7 @@
     <!-- Container -->
     <div class="container pt-5" style="height: 850px;">
         <div id="sommaire_preloader" class="container position-absolute w-100 d-flex justify-content-center" 
-        style="height: 850px; background-color: #dddddd; padding-top: 125px;">
+            style="height: 850px; background-color: #dddddd; padding-top: 125px;">
             <div class="preloader-inner">
             <span class="dot"></span>
             <div class="dots">

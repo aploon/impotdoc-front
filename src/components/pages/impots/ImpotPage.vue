@@ -8,10 +8,10 @@
             <div class="classif-impot-container col-lg">
                 <ul class="d-flex flex-column align-items-center mt-3">
                     <li class="d-flex align-items-center w-100 classif-impot-item">
-                        <a href="#" @click.prevent="fetchImpot(route.params)"
+                        <a href="#" @click.prevent="fetchArticles(route.params)"
                             class="article-title article-title-active fw-bold flex-grow-1">Tous les articles</a>
                     </li>
-                    <li v-for="article in articlesNames" :key="article.id"
+                    <li v-for="article in articlesInfos" :key="article.id"
                         class="d-flex align-items-center w-100 classif-impot-item">
                         <a href="#" @click.prevent="fetchArticle(article.id)" class="article-title fw-bold flex-grow-1"
                             :data-id="article.id">Article {{ article.num }}: {{ article.titre }}</a>
@@ -40,7 +40,7 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center" style="border: solid 1px black !important">
+                                        <td class="text-center" style="vertical-align: middle; border: solid 1px black !important">
                                             {{ article.num }}
                                         </td>
                                         <td v-html="article.contenu"></td>
@@ -69,7 +69,7 @@ const router = useRouter();
 // ref data
 const impot = ref([]);
 const articles = ref([]);
-const articlesNames = ref([]);
+const articlesInfos = ref([]);
 
 // fetch methods
 const fetchImpot = async (params) => {
@@ -83,12 +83,6 @@ const fetchImpot = async (params) => {
 
         if (res.success) {
             impot.value = res.data.impot;
-            articles.value = res.data.articles;
-            articlesNames.value = res.data.articles;
-
-            await nextTick()
-
-            activeArticle();
         } else {
             if (res.code === 404) {
                 // Classif impot not found and redirect to 404 page
@@ -117,6 +111,53 @@ const fetchArticle = async (id) => {
         console.error('Erreur lors de la requête:', error);
     }
 };
+const fetchArticles = async (params) => {
+    try {
+        const res = await $.ajax({
+            url: 'http://impotdoc.local/api/impot/index.php',
+            method: 'POST',
+            data: { action: 'fetch_articles', impot: params.impot },
+            dataType: 'json',
+        });
+
+        if (res.success) {
+            articles.value = res.data.articles;
+            articlesInfos.value = res.data.articles.map((article) => {
+                return {
+                    id: article.id,
+                    num: article.num,
+                    titre: article.titre,
+                };
+            });
+
+        }
+
+    } catch (error) {
+        console.error('Erreur lors de la requête:', error);
+    }
+};
+const fetchArticlesInfos = async (params) => {
+    try {
+        const res = await $.ajax({
+            url: 'http://impotdoc.local/api/impot/index.php',
+            method: 'POST',
+            data: { action: 'fetch_articles_infos', impot: params.impot },
+            dataType: 'json',
+        });
+
+        if (res.success) {
+            articlesInfos.value = res.data.articlesInfo;
+
+            await nextTick()
+
+            activeArticle();
+        }
+
+    } catch (error) {
+        console.error('Erreur lors de la requête:', error);
+    }
+};
+
 const activeArticle = () => {
     // Active article title
     $('.article-title').on('click', function () {
@@ -142,14 +183,17 @@ onBeforeMount(() => {
         const articleId = parseInt(hash.replace('article', ''));
         fetchImpot(route.params);
         fetchArticle(articleId);
+        fetchArticlesInfos(route.params);
 
         setTimeout(()=>{
             // active article title
             $('.article-title').removeClass('article-title-active');
             $('a[data-id="' + articleId + '"]').toggleClass('article-title-active');
-        }, 100);
+        }, 500);
     }else {
         fetchImpot(route.params);
+        fetchArticles(route.params);
+        fetchArticlesInfos(route.params);
     }
 });
 watch(route, (r) => {
@@ -163,9 +207,11 @@ watch(route, (r) => {
             // active article title
             $('.article-title').removeClass('article-title-active');
             $('a[data-id="' + articleId + '"]').toggleClass('article-title-active');
-        }, 100);
+        }, 500);
     }else {
         fetchImpot(r.params);
+        fetchArticles(r.params);
+        fetchArticlesInfos(r.params);
     }
 });
 

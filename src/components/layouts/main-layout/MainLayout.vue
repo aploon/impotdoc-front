@@ -72,15 +72,15 @@ const autoComplete = () => {
                                     <div class="aa-ItemContentBody">
                                         <div class="aa-ItemContentTitle">
                                             ${components.Highlight({
-                            hit: item,
-                            attribute: 'title',
-                        })}
+                                                hit: item,
+                                                attribute: 'title',
+                                            })}
                                         </div>
                                         <div class="aa-ItemContentDescription">
                                             ${components.Highlight({
-                            hit: item,
-                            attribute: 'content',
-                        })}
+                                                hit: item,
+                                                attribute: 'content',
+                                            })}
                                         </div>
                                     </div>
                                 </div>
